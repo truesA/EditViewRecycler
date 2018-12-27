@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EditViewRecycler</string>
+    <string name="details1">第(</string>
+    <string name="details2">)</string>
+    <string name="delete">删除</string>
+    <string name="place">内容:</string>
+    <string name="hint">请输入日报（必填）</string>
+</resources>
