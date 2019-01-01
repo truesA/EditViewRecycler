@@ -16,11 +16,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //默认数据填充
         datas = ArrayList()
         datas!!.add(ItemBean())
         datas2 = ArrayList()
         datas2!!.add(ItemBean())
 
+        //初始化RecyclerView
         val recycler =findViewById<RecyclerView>(R.id.rc_view)
         recycler.layoutManager= LinearLayoutManager(this)
         adapterEx=ExRecyclerAdapter(this,datas,R.layout.item)
@@ -34,11 +36,13 @@ class MainActivity : AppCompatActivity() {
 
         val add=findViewById<Button>(R.id.add_bt)
         val add2=findViewById<Button>(R.id.add_bt2)
+        //添加数据
         add.setOnClickListener {
             adapterEx.addData(ItemBean())
 //            datas!!.add(ItemBean())
 //            adapterEx.notifyDataSetChanged()
         }
+        //添加数据
         add2.setOnClickListener {
             adapterEx2.addData(ItemBean())
 //            datas!!.add(ItemBean())

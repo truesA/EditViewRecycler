@@ -45,7 +45,9 @@ public class ExRecyclerAdapter extends RecyclerView.Adapter<ExRecyclerAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.num.setText(position+1 + "");
+        //设置指示 位置
+        holder.num.setText(position + 1 + "");
+        //第0 不能有删除功能
         if (position == 0) {
             holder.tvDelete.setVisibility(View.GONE);
         } else {
@@ -58,7 +60,7 @@ public class ExRecyclerAdapter extends RecyclerView.Adapter<ExRecyclerAdapter.Vi
         //移除了TextWatcher事件后设置item对应的文本
         holder.place.setText(datas.get(position).getPlace());
 
-
+        //设置焦点
         if (datas.get(position).isFocus()) {
             if (!holder.place.isFocused()) {
                 holder.place.requestFocus();
@@ -70,7 +72,7 @@ public class ExRecyclerAdapter extends RecyclerView.Adapter<ExRecyclerAdapter.Vi
                 holder.place.clearFocus();
             }
         }
-
+        //edit 事件处理
         holder.place.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 final boolean focus = datas.get(position).isFocus();
@@ -99,6 +101,7 @@ public class ExRecyclerAdapter extends RecyclerView.Adapter<ExRecyclerAdapter.Vi
                 if (TextUtils.isEmpty(s)) {
                     datas.get(position).setPlace(null);
                 } else {
+                    //监听edit 值
                     datas.get(position).setPlace(s.toString());
                 }
             }
@@ -107,7 +110,7 @@ public class ExRecyclerAdapter extends RecyclerView.Adapter<ExRecyclerAdapter.Vi
         holder.place.addTextChangedListener(textWatcher);
         holder.place.setTag(R.id.place_value, textWatcher);
 
-
+        //删除该条数据
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,7 +140,7 @@ public class ExRecyclerAdapter extends RecyclerView.Adapter<ExRecyclerAdapter.Vi
 //        }
     }
 
-
+    //设置状态
     private void check(int position) {
         for (ItemBean l : datas) {
             l.setFocus(false);
